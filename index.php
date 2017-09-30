@@ -20,16 +20,19 @@
     }
     if($error) {
     $result='<div class="alert alert-danger">There were error(s) in your form:'.$error.'</div>';
-  } else {
-    if(mail("arthur.bonavita@gmail.com","Message from website", "Name: " . $name)) {
-      $result='<div class="alert alert-success">Thank you! I will be in touch!</div>';
-
     } else {
+        if(mail("arthur.bonavita@gmail.com","Message from website", "Name: " . $name)) {
+            $result='<div class="alert alert-success"><strong>Thank you, '.$name.'!</strong> I will be in touch!</div>';
+            $name = "";
+            $email = "";
+            $message= "";
+
+        } else {
       $result='<div class="alert alert-danger">Sorry, there was an error with your message. Try again later.</div>';
 
-    }
+          }
 
-  }
+        }
 
   }
 
@@ -42,6 +45,10 @@
     <title>MY FORM</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -56,15 +63,15 @@
         <form method="post">
             <div class="form-group">
               <label for="name">Your Name:</label>
-              <input type="text" name="name" class="form-control" placeholder="Lisa">
+              <input type="text" name="name" class="form-control" placeholder="Lisa" value="<?php echo $name ?>">
             </div>
             <div class="form-group">
               <label for="email">Your Email:</label>
-              <input type="email" name="email" class="form-control" placeholder="lisa@gmail.com">
+              <input type="email" name="email" class="form-control" placeholder="lisa@gmail.com" value="<?php echo $email ?>">
             </div>
             <div class="form-group">
               <label for="name">Your Message:</label>
-              <textarea name="message" class="form-control" placeholder="I loved your email form!!! ;D"></textarea>
+              <textarea name="message" class="form-control" placeholder="I loved your email form!!! ;D"><?php echo $message ?></textarea>
             </div>
 
             <input class="btn btn-success" name="submit" type="submit">
