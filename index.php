@@ -21,7 +21,7 @@
     if($error) {
     $result='<div class="alert alert-danger">There were error(s) in your form:'.$error.'</div>';
     } else {
-        if(mail("arthur.bonavita@gmail.com","Message from website", "Name: " . $name)) {
+        if(mail("arthur.bonavita@gmail.com","Message from website", "Name: " . $name . '<br>Email: ' . $email . '<br>Message: ' . $message)) {
             $result='<div class="alert alert-success"><strong>Thank you, '.$name.'!</strong> I will be in touch!</div>';
             $name = "";
             $email = "";
